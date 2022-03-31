@@ -113,7 +113,7 @@ pinv <- function(x) tcrossprod(inv(x), x)
 #'   decomposition of each matrix along \code{x}'s 3rd dimension
 #' @rdname matrix_utils
 
-qr.array <- function(x, ...) apply(x, 3L, qr.default, ...)
+qr.array <- function(x, ...) ifelse(length(dim(x)) == 3, apply(x, 3L, qr.default, ...), qr.default(x))
 
 #' Slightly faster calculation of the Q and R matrices
 #'
